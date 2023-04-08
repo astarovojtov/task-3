@@ -1,17 +1,13 @@
-const products = require('./mock/products-mock');
+import products from './mock/products-mock.js';
 
-module.exports.getProductsList = async (event) => {
+export async function getProductsList(event) {
     return {
       statusCode: 200,
-      // body: JSON.stringify(
-      //   {
-      //     output: products,
-      //     message: "getProductsList",
-      //     input: event,
-      //   },
-      //   null,
-      //   2
-      // )
-      body: JSON.stringify(products.products),
+        headers: {
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        },
+      body: JSON.stringify(products),
     };
-  };
+  }

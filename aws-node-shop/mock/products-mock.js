@@ -1,4 +1,4 @@
-exports.products = [
+export default [
     {
       count: 4,
       description: "Lorem ipsum sol dolor",

@@ -1,4 +1,5 @@
-module.exports.handler = async (event) => {
+//module.exports.handler = async (event) => {
+export default handler = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify(
