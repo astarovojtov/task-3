@@ -1,4 +1,4 @@
-import products from './mock/products-mock.js';
+import products from '../mock/products-mock.js';
 
 export async function getProductsById(event) {
   const { id } = event.pathParameters;

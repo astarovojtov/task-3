@@ -9,7 +9,7 @@ export default [
     {
       count: 6,
       description: "Consectetur adipiscing elit",
-      id: "7567ec4b-b10c-48c5-9345-fc73c48a80a0",
+      id: "asdwasd",
       price: 10,
       title: "Some thing"
     },  {
