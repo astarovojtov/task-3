@@ -1,6 +1,7 @@
 import products from '../mock/products-mock.js';
 
 export async function getProductsById(event) {
+  console.log(event);
   const { id } = event.pathParameters;
   const product = products.find(product => product.id === id);
   
@@ -15,11 +16,6 @@ export async function getProductsById(event) {
   
   return {
     statusCode: 200,
-    headers: {
-          "Access-Control-Allow-Headers" : "Content-Type",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-    },
     body: JSON.stringify(product)
   };
 };

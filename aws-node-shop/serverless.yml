@@ -1,7 +1,6 @@
 service: aws-node-shop
 frameworkVersion: '3'
 plugins:
-  - serverless-auto-swagger
   - serverless-offline
 provider:
   name: aws
@@ -10,7 +9,7 @@ provider:
   region: us-east-1
   environment:
     PRODUCT_TABLE: "Product-${opt:stage, self:provider.stage}"
-    STOCK_TABLE: "Stock-${opt:stage, self:provider.stage}"
+    STOCK_TABLE: "Stonk-${opt:stage, self:provider.stage}"
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -68,11 +67,11 @@ resources:
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: "id"
+            AttributeName: "product_id"
             AttributeType: "S"   
         KeySchema:
           -
-            AttributeName: "id"
+            AttributeName: "product_id"
             KeyType: "HASH"
         ProvisionedThroughput:
           ReadCapacityUnits: 1

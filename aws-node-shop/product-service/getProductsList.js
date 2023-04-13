@@ -3,17 +3,24 @@ import AWS from 'aws-sdk'
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export async function getProductsList(event) {
-  const products = await dynamoDb.scan({
-    TableName: process.env.PRODUCT_TABLE,
-  }).promise();
+  console.log(event);
+  const products = await dynamoScan(process.env.PRODUCT_TABLE);
+  const stock = await dynamoScan(process.env.STOCK_TABLE);
+
+  products.map( product => {
+    const correspondingStock = stock.find( stock => stock.product_id === product.id );
+    product.count =  correspondingStock && correspondingStock.count ? correspondingStock.count : 0;
+  });
 
   return {
     statusCode: 200,
-      headers: {
-          "Access-Control-Allow-Headers" : "Content-Type",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-      },
-    body: JSON.stringify(products.Items),
+    body: JSON.stringify(products),
   };
+}
+
+async function dynamoScan(tableName) {
+  const items = await dynamoDb.scan({
+    TableName: tableName
+  }).promise();
+  return items.Items;
 }
